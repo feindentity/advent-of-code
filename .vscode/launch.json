@@ -6,7 +6,8 @@
             "name": "Launch aocday2",
             "request": "launch",
             "mainClass": "aocday2",
-            "projectName": "advent-of-code_fe58dd10"
+            "projectName": "advent-of-code_fe58dd10",
+            "cwd": "${workspaceFolder}/day2"
         },
         {
             "name": ".NET Core Launch (console)",
