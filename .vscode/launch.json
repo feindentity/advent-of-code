@@ -14,9 +14,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/day1/bin/Debug/net5.0/day1.dll",
+            "program": "${workspaceFolder}/day3/bin/Debug/net5.0/day3.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/day1",
+            "cwd": "${workspaceFolder}/day3",
             "console": "internalConsole",
             "stopAtEntry": false
         },
