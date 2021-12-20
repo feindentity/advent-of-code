@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using day4.bingoBoard;
 
@@ -12,15 +12,58 @@ namespace day4
             inputList=System.IO.File.ReadAllLines(fileName);
             return inputList;
         }
+       
+       public static gameBoard GenerateBoard(int startRow, string[] boardlist)
+       {
+           gameBoard currentBoard = new gameBoard();
+           for(int rowCounter=0;rowCounter < 5;rowCounter++)
+           {
+               for(int columnCounter=0;columnCounter < 5; columnCounter++)
+               {
+                    int currentValue =int.Parse(boardlist[rowCounter + startRow].Substring((columnCounter*3),2));
+                    currentBoard.SetGridValue(rowCounter,columnCounter,currentValue);    
+                }
+           }
+           return currentBoard;
+       }
         static void Main(string[] args)
         {
            string[] bingoData=LoadInputArray("input.txt");
            List<gameBoard> GameBoardList = new List<gameBoard>();
+           int[] BingoCallList = Array.ConvertAll(bingoData[0].Split(','), s => int.Parse(s));
+           gameBoard currentBoard = GenerateBoard(2, bingoData);
+           gameBoard currentBoard2 = GenerateBoard(8, bingoData);
            
+           for(int boardIndex=2;boardIndex+5 < bingoData.Length;boardIndex=boardIndex+6  )
+           {
+               
+           }
+           Console.WriteLine(bingoData[8]);
+           Console.WriteLine(bingoData[9]);
+           Console.WriteLine(bingoData[10]);
+           Console.WriteLine(bingoData[11]);
+           Console.WriteLine(bingoData[12]);
+           Console.WriteLine(currentBoard2.GetGridValue(0,0));
+           Console.WriteLine(currentBoard2.GetGridValue(1,1));
+           Console.WriteLine(currentBoard2.GetGridValue(2,2));
+           Console.WriteLine(currentBoard2.GetGridValue(3,3));
+           Console.WriteLine(currentBoard2.GetGridValue(4,4));
+           
+           
+           
+           
+
+       /*
            gameBoard gb = new gameBoard();
           
+            Console.WriteLine(bingoData[0]);
+            Console.WriteLine(BingoCallList[0]);
+            Console.WriteLine(BingoCallList[1]);
+            Console.WriteLine(BingoCallList[2]);
+            Console.WriteLine(BingoCallList[BingoCallList.Length-1]);
+         */   
 
-            Console.WriteLine(gb.GetGridValue(0,1));
+          
         }
     }
 }
