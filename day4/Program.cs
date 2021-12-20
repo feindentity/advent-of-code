@@ -32,17 +32,13 @@ namespace day4
            List<gameBoard> GameBoardList = new List<gameBoard>();
            int[] BingoCallList = Array.ConvertAll(bingoData[0].Split(','), s => int.Parse(s));
            gameBoard currentBoard = GenerateBoard(2, bingoData);
-           gameBoard currentBoard2 = GenerateBoard(8, bingoData);
+           ///gameBoard currentBoard2 = GenerateBoard(8, bingoData);
            
-           for(int boardIndex=2;boardIndex+5 < bingoData.Length;boardIndex=boardIndex+6  )
+           for(int boardIndex=2;boardIndex < bingoData.Length;boardIndex=boardIndex+6  )
            {
-               
+               GameBoardList.Add(GenerateBoard(boardIndex, bingoData));
            }
-           Console.WriteLine(bingoData[8]);
-           Console.WriteLine(bingoData[9]);
-           Console.WriteLine(bingoData[10]);
-           Console.WriteLine(bingoData[11]);
-           Console.WriteLine(bingoData[12]);
+           gameBoard currentBoard2=GameBoardList[GameBoardList.Count-1];
            Console.WriteLine(currentBoard2.GetGridValue(0,0));
            Console.WriteLine(currentBoard2.GetGridValue(1,1));
            Console.WriteLine(currentBoard2.GetGridValue(2,2));
