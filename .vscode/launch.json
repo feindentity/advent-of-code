@@ -3,20 +3,42 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch aocday2",
+            "name": "DAY 2: Launch aocday2",
             "request": "launch",
             "mainClass": "aocday2",
             "projectName": "advent-of-code_fe58dd10",
             "cwd": "${workspaceFolder}/day2"
         },
         {
-            "name": ".NET Core Launch (console)",
+            "name": "DAY 3.NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/day3/bin/Debug/net5.0/day3.dll",
             "args": [],
             "cwd": "${workspaceFolder}/day3",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "DAY 1.NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/day1/bin/Debug/net5.0/day1.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/day1",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "DAY 4.NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/day4/bin/Debug/net5.0/day4.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/day4",
             "console": "internalConsole",
             "stopAtEntry": false
         },

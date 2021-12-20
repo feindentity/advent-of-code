@@ -1,17 +1,4 @@
 var fs = require('fs');
-var readline=require('readline')
-var binaryString = "1010";
-var testNumber = parseInt(binaryString,2);
-var testCompare = (binaryString.charAt(0)=='1');
-var testGenerateGamma = '1';
-testGenerateGamma = testGenerateGamma + '2';
-/*
-console.log(testNumber);
-console.log(binaryString.charAt(0));
-console.log(binaryString.charAt(1));
-console.log(testCompare);
-console.log(testGenerateGamma);
-*/
 
 var GetLines = function(path){
     try {
@@ -21,10 +8,6 @@ var GetLines = function(path){
         // split the contents by new line
         const lines = data.split(/\r?\n/);
     
-        // print all lines
-      //  lines.forEach((line) => {
-      //      console.log(line);
-      //  });
     return lines;
 
     } catch (err) {
