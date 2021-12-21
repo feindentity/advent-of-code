@@ -44,7 +44,26 @@ namespace day4
            Console.WriteLine(currentBoard2.GetGridValue(2,2));
            Console.WriteLine(currentBoard2.GetGridValue(3,3));
            Console.WriteLine(currentBoard2.GetGridValue(4,4));
-           
+
+           boardPosition currentValue=currentBoard2.FindValue(100);
+           Console.WriteLine(currentValue);
+         //Column Test
+         /*
+           currentValue=currentBoard2.FindValue(48);
+           currentValue=currentBoard2.FindValue(60);
+           currentValue=currentBoard2.FindValue(57);
+           currentValue=currentBoard2.FindValue(14);
+           currentValue=currentBoard2.FindValue(62);
+           Console.WriteLine(currentBoard2.WinningBoard(currentValue));
+        */
+         //Row Test
+           currentValue=currentBoard2.FindValue(55);
+           currentValue=currentBoard2.FindValue(63);
+           currentValue=currentBoard2.FindValue(50);
+           currentValue=currentBoard2.FindValue(7);
+           currentValue=currentBoard2.FindValue(62);
+           Console.WriteLine(currentBoard2.WinningBoard(currentValue));
+             
            
            
            
