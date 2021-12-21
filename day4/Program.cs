@@ -31,13 +31,39 @@ namespace day4
            string[] bingoData=LoadInputArray("input.txt");
            List<gameBoard> GameBoardList = new List<gameBoard>();
            int[] BingoCallList = Array.ConvertAll(bingoData[0].Split(','), s => int.Parse(s));
-           gameBoard currentBoard = GenerateBoard(2, bingoData);
-           ///gameBoard currentBoard2 = GenerateBoard(8, bingoData);
-           
+           gameBoard currentBoard ;
+           int currentCallerValue;
+           bool winnerFound=false; 
+
+           //Generate Board
            for(int boardIndex=2;boardIndex < bingoData.Length;boardIndex=boardIndex+6  )
            {
                GameBoardList.Add(GenerateBoard(boardIndex, bingoData));
            }
+            
+           for (int callerCounter=0; callerCounter < bingoData.Length && !winnerFound; callerCounter++)
+           {
+               for(int boardCounter=0;boardCounter < GameBoardList.Count && !winnerFound;boardCounter++)
+               {    
+                  currentBoard=GameBoardList[boardCounter];
+                  currentCallerValue=BingoCallList[callerCounter];
+                  boardPosition foundPosition=  currentBoard.FindValue(currentCallerValue);
+                  if (foundPosition !=null)
+                  {
+                      winnerFound=currentBoard.WinningBoard(foundPosition);
+                  } 
+               Console.WriteLine("Board Counter: " + boardCounter);     
+               }
+               Console.WriteLine("call result: " + callerCounter);
+              
+           } 
+         
+         Console.WriteLine("Winner: "+ winnerFound);
+       //  Console.WriteLine(currentBoard.GetGridValue(0,0) + currentBoard.GetGridValue(0,0).)
+        }
+        public static void Test()
+        {
+          /*  
            gameBoard currentBoard2=GameBoardList[GameBoardList.Count-1];
            Console.WriteLine(currentBoard2.GetGridValue(0,0));
            Console.WriteLine(currentBoard2.GetGridValue(1,1));
@@ -47,6 +73,7 @@ namespace day4
 
            boardPosition currentValue=currentBoard2.FindValue(100);
            Console.WriteLine(currentValue);
+           */
          //Column Test
          /*
            currentValue=currentBoard2.FindValue(48);
@@ -57,6 +84,7 @@ namespace day4
            Console.WriteLine(currentBoard2.WinningBoard(currentValue));
         */
          //Row Test
+          /*
            currentValue=currentBoard2.FindValue(55);
            currentValue=currentBoard2.FindValue(63);
            currentValue=currentBoard2.FindValue(50);
@@ -65,7 +93,7 @@ namespace day4
            Console.WriteLine(currentBoard2.WinningBoard(currentValue));
              
            
-           
+           */
            
 
        /*
