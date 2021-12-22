@@ -7,6 +7,9 @@ namespace day4.bingoBoard
         {
             this.PositionGrid = new boardPosition[5,5];
         }
+        public int boardIndex{get;set;}
+        public bool winner{get;set;}
+        public int winningValue{get;set;}
         private int foundCounter;
         public boardPosition[,] PositionGrid{get;set;}
         public void SetGridValue(int row, int column, int value)

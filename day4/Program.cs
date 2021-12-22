@@ -40,7 +40,8 @@ namespace day4
            {
                GameBoardList.Add(GenerateBoard(boardIndex, bingoData));
            }
-            
+           //Part 1
+           /* 
            for (int callerCounter=0; callerCounter < bingoData.Length && !winnerFound; callerCounter++)
            {
                for(int boardCounter=0;boardCounter < GameBoardList.Count && !winnerFound;boardCounter++)
@@ -59,6 +60,40 @@ namespace day4
            } 
         
          Console.WriteLine("Winner: "+ winnerFound);
+         */
+         //PART 2
+         // List<gameBoard> WinningList = new List<gameBoard>();
+         List<int> WinningList = new List<int>();
+          for (int callerCounter=0; callerCounter < bingoData.Length ; callerCounter++)
+           {
+               for(int boardCounter=0;boardCounter < GameBoardList.Count; boardCounter++)
+               {    
+                  currentBoard=GameBoardList[boardCounter];
+                if (!currentBoard.winner)
+                {
+                    currentCallerValue=BingoCallList[callerCounter];
+                    boardPosition foundPosition=  currentBoard.FindValue(currentCallerValue);
+                    if (foundPosition !=null)
+                    {
+                        winnerFound=currentBoard.WinningBoard(foundPosition);
+                    }
+                    if (winnerFound)
+                     {
+                            currentBoard.winner=true;
+                            currentBoard.winningValue=currentCallerValue;
+                            Console.WriteLine("Board Index:" + boardCounter);
+                            Console.WriteLine("Winning Value: "+ currentCallerValue);
+                            WinningList.Add(boardCounter);
+                            winnerFound=false;
+                     } 
+           //         Console.WriteLine("Board Counter: " + boardCounter);
+                }     
+               }
+
+            } 
+            currentBoard=GameBoardList[WinningList[WinningList.Count-1]];
+          //  currentBoard.PositionGrid[4,3].Selected=true;
+
        //  Console.WriteLine(currentBoard.GetGridValue(0,0) + currentBoard.GetGridValue(0,0).)
        int basicScore=0;
             for( int rowCounter=0;rowCounter < 5; rowCounter++)
@@ -71,7 +106,7 @@ namespace day4
                     }
                 }
             } 
-            basicScore*=currentCallerValue;
+            basicScore*=currentBoard.winningValue;
             Console.WriteLine("bingo score: " + basicScore);
         }
         public static void Test()
