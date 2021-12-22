@@ -43,6 +43,14 @@
             "stopAtEntry": false
         },
         {
+            "type": "java",
+            "name": "DAY 5: Launch aocday2",
+            "request": "launch",
+            "mainClass": "aocday5",
+            "projectName": "advent-of-code_fe58dd10",
+            "cwd": "${workspaceFolder}/day5"
+        },
+        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"
