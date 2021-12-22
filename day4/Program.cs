@@ -31,8 +31,8 @@ namespace day4
            string[] bingoData=LoadInputArray("input.txt");
            List<gameBoard> GameBoardList = new List<gameBoard>();
            int[] BingoCallList = Array.ConvertAll(bingoData[0].Split(','), s => int.Parse(s));
-           gameBoard currentBoard ;
-           int currentCallerValue;
+           gameBoard currentBoard = new gameBoard();
+           int currentCallerValue=0;
            bool winnerFound=false; 
 
            //Generate Board
@@ -55,11 +55,24 @@ namespace day4
                Console.WriteLine("Board Counter: " + boardCounter);     
                }
                Console.WriteLine("call result: " + callerCounter);
-              
+               Console.WriteLine("caller value: " + currentCallerValue);
            } 
-         
+        
          Console.WriteLine("Winner: "+ winnerFound);
        //  Console.WriteLine(currentBoard.GetGridValue(0,0) + currentBoard.GetGridValue(0,0).)
+       int basicScore=0;
+            for( int rowCounter=0;rowCounter < 5; rowCounter++)
+            {
+                for(int columnCounter=0;columnCounter<5;columnCounter++)
+                {
+                    if(!currentBoard.PositionGrid[columnCounter,rowCounter].Selected)
+                    {
+                        basicScore+=currentBoard.PositionGrid[columnCounter,rowCounter].PositionValue;
+                    }
+                }
+            } 
+            basicScore*=currentCallerValue;
+            Console.WriteLine("bingo score: " + basicScore);
         }
         public static void Test()
         {
