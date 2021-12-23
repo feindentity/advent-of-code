@@ -3,7 +3,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.ArrayList;
-import java.awt.geom.Line2D;
 
 public class aocday5 {
 
@@ -12,8 +11,8 @@ public class aocday5 {
         return (CommandList);
     }
 
-    public static List<Line2D.Float> HorizontalVerticalLineList(List<String> currentLineList) {
-        List<Line2D.Float> filteredLineList = new ArrayList<Line2D.Float>();
+    public static List<gridline> HorizontalVerticalLineList(List<String> currentLineList) {
+        List<gridline> filteredLineList = new ArrayList<gridline>();
 
         // Filter out diagnal movement
         currentLineList.forEach((line) -> {
@@ -21,22 +20,75 @@ public class aocday5 {
             String[] startPoint = linepoints[0].split(",");
             String[] endPoint = linepoints[1].split(",");
             if (startPoint[0].equals(endPoint[0]) || startPoint[1].equals(endPoint[1])) {
-                filteredLineList.add(new Line2D.Float(Float.parseFloat(startPoint[0]),
-                        Float.parseFloat(startPoint[1]),
-                        Float.parseFloat(endPoint[0]),
-                        Float.parseFloat(endPoint[1])));
-                        System.out.println("Full Line: " + line);
-                        System.out.println("X,Y X,Y: "+startPoint[0]+","+startPoint[1]+" "+endPoint[0]+","+endPoint[1]);
+                filteredLineList.add(new gridline(Integer.parseInt(startPoint[0]),
+                Integer.parseInt(startPoint[1]),
+                Integer.parseInt(endPoint[0]),
+                Integer.parseInt(endPoint[1])));
+                //        System.out.println("Full Line: " + line);
+                //        System.out.println("X,Y X,Y: "+startPoint[0]+","+startPoint[1]+" "+endPoint[0]+","+endPoint[1]);
             
             }
 
         });
-        System.out.println(filteredLineList.size());
         return filteredLineList;
     }
 
     public static void Part1(List<String> currentList) {
-        List<Line2D.Float> localLineList = HorizontalVerticalLineList(currentList);
+        List<gridline> localLineList = HorizontalVerticalLineList(currentList);
+        int[][] lineCanvas = new int[1001][1001];
+        localLineList.forEach((line) -> {
+            if (line.StartX==line.EndX)
+            {
+                int yStarter;
+                int yEnder;
+                if (line.StartY<line.EndY)
+                {
+                    yStarter=line.StartY;
+                    yEnder = line.EndY;
+                }
+                else
+                {
+                    yStarter=line.EndY;
+                    yEnder = line.StartY;
+                }
+                for(int counter=yStarter;counter<=yEnder;counter++)
+                {
+                    lineCanvas[line.StartX][counter]++;
+                }
+            }
+            if (line.StartY==line.EndY)
+            {
+                int xStarter;
+                int xEnder;
+                if (line.StartX<line.EndX)
+                {
+                    xStarter=line.StartX;
+                    xEnder = line.EndX;
+                }
+                else
+                {
+                    xStarter=line.EndX;
+                    xEnder = line.StartX;
+                }
+                for(int counter=xStarter;counter<=xEnder;counter++)
+                {
+                    lineCanvas[counter][line.StartY]++;
+                }
+            }
+        });
+        int multiplePointHit=0;
+        for(int rowCounter=1;rowCounter <=1000;rowCounter++)
+        {
+            for(int columnCounter=1;columnCounter<=1000;columnCounter++)
+            {
+                if(lineCanvas[rowCounter][columnCounter]>1)
+                {
+                    multiplePointHit++;
+                }
+
+            }
+        }
+        System.out.println("How many multiple points: " + multiplePointHit);
         System.out.println(localLineList.size());
     }
 
