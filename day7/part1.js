@@ -19,24 +19,58 @@ var GetMoves = function(path){
 
 var currentMoveList
 var currentTotalFuel=0;
-var LeastFuelTotal=1000000;
+var LeastFuelTotal=300000000;
 var positionForLeastTotal=-1;
 currentMoveList=GetMoves("input.txt");
-for(positionCounter=0;positionCounter < 2000; positionCounter++)
-{
-    for(counter=0;counter<currentMoveList.length;counter++)
-    {
-        currentTotalFuel+=Math.abs(currentMoveList[counter] -positionCounter);
-    }
- //   console.log("curretTotal: " + currentTotalFuel);
- //   console.log("position: " + counter);
 
-   if(currentTotalFuel < LeastFuelTotal)
+var Part1Calculate = function(calculateMoveList){
+
+    for(positionCounter=0;positionCounter < 2000; positionCounter++)
     {
-        LeastFuelTotal=currentTotalFuel
-        positionForLeastTotal=positionCounter;        
+        for(counter=0;counter<calculateMoveList.length;counter++)
+        {
+            var positionDifference
+            currentTotalFuel+=Math.abs(calculateMoveList[counter] -positionCounter);
+        }
+    //   console.log("curretTotal: " + currentTotalFuel);
+    //   console.log("position: " + counter);
+
+    if(currentTotalFuel < LeastFuelTotal)
+        {
+            LeastFuelTotal=currentTotalFuel
+            positionForLeastTotal=positionCounter;        
+        }
+        currentTotalFuel=0;
     }
-    currentTotalFuel=0;
+    console.log("least total fuel: " + LeastFuelTotal);
+    console.log("least fuel postionion: " + positionForLeastTotal);
 }
-console.log("least total fuel: " + LeastFuelTotal);
-console.log("least fuel postionion: " + positionForLeastTotal);
+var Part2Calculate = function(calculateMoveList){
+
+    for(positionCounter=0;positionCounter < 2000; positionCounter++)
+    {
+        for(counter=0;counter<calculateMoveList.length;counter++)
+        {
+            var positionDifference
+            positionDifference=Math.abs(calculateMoveList[counter] -positionCounter);
+            for(positionDifferenceCounter=positionDifference; positionDifferenceCounter >0; positionDifferenceCounter--)
+            {
+                currentTotalFuel+=positionDifferenceCounter; 
+                positionDifferenceCounter
+            }
+        }
+    //   console.log("curretTotal: " + currentTotalFuel);
+    //   console.log("position: " + counter);
+
+    if(currentTotalFuel < LeastFuelTotal)
+        {
+            LeastFuelTotal=currentTotalFuel
+            positionForLeastTotal=positionCounter;        
+        }
+        currentTotalFuel=0;
+    }
+    console.log("least total fuel: " + LeastFuelTotal);
+    console.log("least fuel postionion: " + positionForLeastTotal);
+}
+//Part1Calculate(currentMoveList);
+Part2Calculate(currentMoveList);
