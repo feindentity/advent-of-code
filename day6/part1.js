@@ -71,7 +71,7 @@ var SchoolGeneration=function(schoolList, maxGeneration)
     return schoolDistrict;
 }
 var fishList = GetFish("input.txt");
-var maxGeneration = 80;
+var maxGeneration = 256;
 /*
 var school1 = fishList.slice(0,1);
 var currentSchoolDistrict = SchoolGeneration(school1,maxGeneration);
