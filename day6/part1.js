@@ -1,3 +1,4 @@
+const { groupEnd } = require('console');
 var fs = require('fs');
 
 var GetFish = function(path){
@@ -70,7 +71,8 @@ var SchoolGeneration=function(schoolList, maxGeneration)
     return schoolDistrict;
 }
 var fishList = GetFish("input.txt");
-var maxGeneration = 256;
+var maxGeneration = 80;
+/*
 var school1 = fishList.slice(0,1);
 var currentSchoolDistrict = SchoolGeneration(school1,maxGeneration);
 console.log("Generation Count: " + currentSchoolDistrict.length);
@@ -85,3 +87,68 @@ console.log("Fish Count: " + fishCounter);
 
 //calculate a new fish for a number generates
 var fish=[8];
+*/
+var TrackCounters=function(schoolList, maxGeneration)
+{
+    var generationCounter=[];
+    for(var dayCounter=0;dayCounter<maxGeneration;dayCounter++)
+    {   var newFishCounter=0;
+                for(var fishCounter=0;fishCounter<schoolList.length;fishCounter++)
+                {
+        
+                    if (schoolList[fishCounter]==0)
+                    {
+                        schoolList[fishCounter]=6;
+                        newFishCounter++;
+                    }
+                    else
+                    {
+                        schoolList[fishCounter]--;
+                    }
+                }
+            console.log("Track Counter: Generation: " + dayCounter +  ", New Fish Count: " + newFishCounter);
+            generationCounter.push({generation: dayCounter, newFish: newFishCounter })
+
+    }
+    return generationCounter;
+}
+
+var generationList = TrackCounters(fishList, maxGeneration);
+console.log("ListFrom Track Counters" + generationList.length);
+for(genCounter=0;genCounter < generationList.length;genCounter++)
+{
+    console.log("Generation: " + generationList[genCounter].generation +  ", New Fish Count: " + generationList[genCounter].newFish);
+}
+totalCounter=300;
+// add count generation 
+
+for(generationCounterMain=0;generationCounterMain<maxGeneration; generationCounterMain++)
+{ 
+    generationAddition=generationList[generationCounterMain].newFish;
+    currentGeneration=generationList[generationCounterMain].generation;
+        
+    if(generationAddition > 0)
+    {
+
+
+        totalCounter+=generationAddition;
+        // do first add 10 generations
+        var generationToUpdate = currentGeneration+9;
+        if (generationToUpdate < maxGeneration)
+        {
+            generationList[generationToUpdate].newFish+=generationAddition;
+            generationToUpdate+=7;
+            while(generationToUpdate < maxGeneration)
+            {
+                generationList[generationToUpdate].newFish+=generationAddition;
+                generationToUpdate+=7;
+            }
+        }
+    }
+   
+}
+for(genCounter=0;genCounter < generationList.length;genCounter++)
+{
+    console.log("Generation: " + generationList[genCounter].generation +  ", New Fish Count: " + generationList[genCounter].newFish);
+}
+console.log(totalCounter);

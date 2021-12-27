@@ -2,6 +2,15 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Day 6 Node",
+            "program": "${workspaceFolder}/day6/part1.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+        {
             "type": "java",
             "name": "DAY 2: Launch aocday2",
             "request": "launch",
