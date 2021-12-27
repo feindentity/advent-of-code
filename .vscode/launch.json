@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+   
         {
             "name": "Launch Day 6 Node",
             "program": "${workspaceFolder}/day6/part1.js",
@@ -58,6 +59,15 @@
             "mainClass": "aocday5",
             "projectName": "advent-of-code_fe58dd10",
             "cwd": "${workspaceFolder}/day5"
+        },
+        {
+            "type": "java",
+            "name": "Day 8:Launch Java Program",
+            "request": "launch",
+            "mainClass": "aocday8",
+            "projectName": "advent-of-code_fe58dd10",
+            "cwd": "${workspaceFolder}/day8"
+    
         },
         {
             "name": ".NET Core Attach",
